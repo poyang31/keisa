@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "/../../vendor/Database.php";
 
-class Employee extends DB
+class Employee extends Controller
 {
     public function getUsers()
     {

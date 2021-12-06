@@ -1,4 +1,4 @@
-export default function doInsert(supplierID ){
+export default function doInsert(supplierID){
     let data = {
         "supplierID":supplierID ,
     }

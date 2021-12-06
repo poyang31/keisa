@@ -17,12 +17,13 @@ class Dept extends Controller
         }
         return Database::select($sql, $arg);
     }
+
     public function newDept()
     {
         $deptName = $_POST["deptName"];
 
         Database::connect();
-        $sql = "INSERT INTO `dept` (`deptName` ) VALUES (?)";
+        $sql = "INSERT INTO `dept` (`deptName`) VALUES (?)";
         return Database::insert($sql, array($deptName));
     }
 
