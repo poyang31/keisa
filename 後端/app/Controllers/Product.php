@@ -6,7 +6,6 @@ class Product extends Controller
 {
     public function getProducts()
     {
-        Database::connect();
         if (isset($_POST["productID"])) {
             $productID = $_POST["productID"];
             $sql = "SELECT  *  FROM  `products` WHERE `productID` = ?";
@@ -15,6 +14,7 @@ class Product extends Controller
             $sql = "SELECT  *  FROM  `products`";
             $arg = null;
         }
+        Database::connect();
         return Database::select($sql, $arg);
     }
 
@@ -24,18 +24,16 @@ class Product extends Controller
         $productCost = $_POST["productCost"];
         $unitprice = $_POST["unitprice"];
         $productCount = $_POST["productCount"];
-
-        Database::connect();
         $sql = "INSERT INTO `products` (`productName`, `productCost`, `unitprice`, `productCount`) VALUES (?, ?, ?, ?)";
+        Database::connect();
         return Database::insert($sql, array($productName, $productCost, $unitprice, $productCount));
     }
 
     public function removeProduct()
     {
         $productID = $_POST["productID"];
-
-        Database::connect();
         $sql = "DELETE FROM `products` WHERE `productID`=?";
+        Database::connect();
         return Database::delete($sql, array($productID));
     }
 
@@ -46,9 +44,8 @@ class Product extends Controller
         $productCost = $_POST["productCost"];
         $unitprice = $_POST["unitprice"];
         $productCount = $_POST["productCount"];
-
-        Database::connect();
         $sql = "UPDATE `products` SET `productName`=?, `productCost`=?, `unitprice`=?, `productCount`=? WHERE `productID`=?";
+        Database::connect();
         return Database::update($sql, array($productName, $productCost, $unitprice, $productCount, $productID));
     }
 }

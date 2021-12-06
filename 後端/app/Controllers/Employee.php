@@ -6,7 +6,6 @@ class Employee extends Controller
 {
     public function getUsers()
     {
-        Database::connect();
         if (isset($_POST["id"])) {
             $id = $_POST["id"];
             $sql = "SELECT  *  FROM  `employees` WHERE `id`=?";
@@ -15,6 +14,7 @@ class Employee extends Controller
             $sql = "SELECT  *  FROM  `employees`";
             $arg = null;
         }
+        Database::connect();
         return Database::select($sql, $arg);
     }
 
@@ -26,18 +26,16 @@ class Employee extends Controller
         $address = $_POST["address"];
         $email = $_POST["email"];
         $phone = $_POST["phone"];
-
-        Database::connect();
         $sql = "INSERT INTO `employees` (`name`, `password`, `workdate`, `address`, `email`, `phone`) VALUES (?, ?, ?, ?, ?, ?)";
+        Database::connect();
         return Database::insert($sql, array($name, $password, $workdate, $address, $email, $phone));
     }
 
     public function removeUser()
     {
         $id = $_POST["id"];
-
-        Database::connect();
         $sql = "DELETE FROM `employees` WHERE `id` = ?";
+        Database::connect();
         return Database::delete($sql, array($id));
     }
 
@@ -50,9 +48,8 @@ class Employee extends Controller
         $address = $_POST["address"];
         $email = $_POST["email"];
         $phone = $_POST["phone"];
-
-        Database::connect();
         $sql = "UPDATE `employees` SET `name` = ?, `password` = ?, `workdate` = ?, `address` = ?, `email` = ?, `phone` = ? WHERE `id`=?";
+        Database::connect();
         return Database::update($sql, array($name, $password, $workdate, $address, $email, $phone, $id));
     }
 }

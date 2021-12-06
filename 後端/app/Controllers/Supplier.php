@@ -6,7 +6,6 @@ class Supplier extends Controller
 {
     public function getsuppliers()
     {
-        Database::connect();
         if (isset($_POST["supplierID"])) {
             $supplierID = $_POST["supplierID"];
             $sql = "SELECT  *  FROM  `supplier` WHERE `supplierID` = ?";
@@ -15,6 +14,7 @@ class Supplier extends Controller
             $sql = "SELECT  *  FROM  `supplier`";
             $arg = null;
         }
+        Database::connect();
         return Database::select($sql, $arg);
     }
 
@@ -24,18 +24,16 @@ class Supplier extends Controller
         $contactPerson = $_POST["contactPerson"];
         $phoneNumber = $_POST["phoneNumber"];
         $address = $_POST["address"];
-
-        Database::connect();
         $sql = "INSERT INTO `supplier` (`supplierName`, `contactPerson`, `phoneNumber` , `address`) VALUES (?, ?, ?, ?)";
+        Database::connect();
         return Database::insert($sql, array($supplierName, $contactPerson, $phoneNumber, $address));
     }
 
     public function removeSupplier()
     {
         $supplierID = $_POST["supplierID"];
-
+        $sql = "DELETE FROM `supplier` WHERE `supplierID` = ?";
         Database::connect();
-        $sql = "DELETE FROM `supplier` WHERE `supplierID`=?";
         return Database::delete($sql, array($supplierID));
     }
 
@@ -46,9 +44,8 @@ class Supplier extends Controller
         $contactPerson = $_POST["contactPerson"];
         $phoneNumber = $_POST["phoneNumber"];
         $address = $_POST["address"];
-
+        $sql = "UPDATE `supplier` SET `supplierName`= ?, `contactPerson`= ?, `phoneNumber`= ?, `address`= ? WHERE `supplierID` = ?";
         Database::connect();
-        $sql = "UPDATE `supplier` SET `supplierName`=?, `contactPerson`=?, `phoneNumber`=? , `address`=? WHERE `supplierID`=?";
         return Database::update($sql, array($supplierName, $contactPerson, $phoneNumber, $address, $supplierID));
     }
 }
