@@ -28,7 +28,7 @@ class Employee extends DB
         $phone = $_POST["phone"];
 
         Database::connect();
-        $sql = "INSERT INTO `employees` ( `name`, `password`, `workdate`, `address`, `email`, `phone`) VALUES ( ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO `employees` (`name`, `password`, `workdate`, `address`, `email`, `phone`) VALUES (?, ?, ?, ?, ?, ?)";
         return Database::insert($sql, array($name, $password, $workdate, $address, $email, $phone));
     }
 
@@ -37,7 +37,7 @@ class Employee extends DB
         $id = $_POST["id"];
 
         Database::connect();
-        $sql = "DELETE FROM `employees` WHERE `id`=?";
+        $sql = "DELETE FROM `employees` WHERE `id` = ?";
         return Database::delete($sql, array($id));
     }
 
@@ -52,7 +52,7 @@ class Employee extends DB
         $phone = $_POST["phone"];
 
         Database::connect();
-        $sql = "UPDATE `employees` SET `name`=?, `password`=?, `workdate`=?, `address`=?, `email`=?, `phone`=? WHERE `id`=?";
+        $sql = "UPDATE `employees` SET `name` = ?, `password` = ?, `workdate` = ?, `address` = ?, `email` = ?, `phone` = ? WHERE `id`=?";
         return Database::update($sql, array($name, $password, $workdate, $address, $email, $phone, $id));
     }
 }

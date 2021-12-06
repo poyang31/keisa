@@ -9,7 +9,7 @@ class Product extends Controller
         Database::connect();
         if (isset($_POST["productID"])) {
             $productID = $_POST["productID"];
-            $sql = "SELECT  *  FROM  `products` WHERE `productID`=?";
+            $sql = "SELECT  *  FROM  `products` WHERE `productID` = ?";
             $arg = array($productID);
         } else {
             $sql = "SELECT  *  FROM  `products`";
@@ -17,6 +17,7 @@ class Product extends Controller
         }
         return Database::select($sql, $arg);
     }
+
     public function newProduct()
     {
         $productName = $_POST["productName"];
@@ -25,7 +26,7 @@ class Product extends Controller
         $productCount = $_POST["productCount"];
 
         Database::connect();
-        $sql = "INSERT INTO `products` (`productName`, `productCost`, `unitprice`, `productCount`) VALUES ( ?, ?, ?, ?)";
+        $sql = "INSERT INTO `products` (`productName`, `productCost`, `unitprice`, `productCount`) VALUES (?, ?, ?, ?)";
         return Database::insert($sql, array($productName, $productCost, $unitprice, $productCount));
     }
 

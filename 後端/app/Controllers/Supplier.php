@@ -9,7 +9,7 @@ class Supplier extends Controller
         Database::connect();
         if (isset($_POST["supplierID"])) {
             $supplierID = $_POST["supplierID"];
-            $sql = "SELECT  *  FROM  `supplier` WHERE `supplierID`=?";
+            $sql = "SELECT  *  FROM  `supplier` WHERE `supplierID` = ?";
             $arg = array($supplierID);
         } else {
             $sql = "SELECT  *  FROM  `supplier`";
@@ -26,7 +26,7 @@ class Supplier extends Controller
         $address = $_POST["address"];
 
         Database::connect();
-        $sql = "INSERT INTO `supplier` ( `supplierName`, `contactPerson`, `phoneNumber` , `address`) VALUES ( ?, ?, ?, ?)";
+        $sql = "INSERT INTO `supplier` (`supplierName`, `contactPerson`, `phoneNumber` , `address`) VALUES (?, ?, ?, ?)";
         return Database::insert($sql, array($supplierName, $contactPerson, $phoneNumber, $address));
     }
 
