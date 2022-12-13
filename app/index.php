@@ -4,11 +4,11 @@
 
 require __DIR__ . "/kernel/forbidden.php";
 
-$engine = (require __DIR__ . "/kernel/engine.php")();
+$app = (require __DIR__ . "/kernel/app.php")();
 
-$engine->loadRoutes([
+$app->loadRoutes([
     "/" => "index",
     "/simple" => "simple"
 ]);
 
-$engine->run();
+$app->start();
