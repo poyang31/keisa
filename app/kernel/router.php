@@ -9,13 +9,21 @@ if (__FILE__ === $_SERVER["SCRIPT_FILENAME"]) {
 
 final class Router
 {
+    private array $routes;
+
     public function get(string $path): callable
     {
-        return fn() => null;
+        return $this->routes[$path];
     }
 
-    public function set(string $path, callable $method): void
+    public function set(string $prefix_path, array $pack): void
     {
-
+        foreach ($pack as $suffix_path => $method) {
+            $trigger_path = join("/", array_map(
+                fn ($s) => trim($s, "/"),
+                [$prefix_path, $suffix_path]
+            ));
+            $this->routes[$trigger_path] = $method;
+        }
     }
 }

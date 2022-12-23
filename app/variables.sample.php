@@ -7,12 +7,6 @@ if (__FILE__ === $_SERVER["SCRIPT_FILENAME"]) {
     exit;
 }
 
-require_once __DIR__ . "/../kernel/context.php";
-
-$indexHandler = function (Context $context): void {
-    $context->get("response")->text("Hello World");
-};
-
 return [
-    "/" => $indexHandler,
+    "APP_NAME" => "keisa"
 ];

@@ -7,9 +7,11 @@ if (__FILE__ === $_SERVER["SCRIPT_FILENAME"]) {
     exit;
 }
 
+require_once __DIR__ . "/engine.php";
+
 return function () {
-    $config = file_exists(__DIR__ . "/config.php")
-        ? require __DIR__ . "/config.php"
+    $config = file_exists(__DIR__ . "/variables.php")
+        ? require __DIR__ . "/variables.php"
         : array();
     return new Engine($config);
 };
